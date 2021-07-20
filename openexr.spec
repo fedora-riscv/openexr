@@ -1,19 +1,18 @@
 %{?!python3_pkgversion:%global python3_pkgversion 3}
-%global sover 25
+%global sover 29
 
 Name:           openexr
-Version:        2.5.5
-Release:        2%{?dist}
+Version:        3.0.5
+Release:        1%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
 License:        BSD
 URL:            https://www.openexr.com/
 Source0:        https://github.com/AcademySoftwareFoundation/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-Patch0:         openexr-gcc11.patch
-
 BuildRequires:  cmake gcc gcc-c++
 BuildRequires:  boost-devel
+BuildRequires:  imath-devel
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  zlib-devel
 
@@ -72,14 +71,6 @@ useful mathematical objects, functions, and data types common in computer
 graphics applications, including the “half” 16-bit floating-point type.
 
 
-%package -n python%{python3_pkgversion}-openexr
-Summary:        Python 3 binding for OpenEXR
-%{?python_provide:%python_provide python3-openexr}
-
-%description -n python%{python3_pkgversion}-openexr
-%{summary}.
-
-
 %package devel
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -125,26 +116,19 @@ Summary:        Development files for %{name}
 %doc CHANGES.md CONTRIBUTING.md GOVERNANCE.md SECURITY.md CODE_OF_CONDUCT.md CONTRIBUTORS.md README.md
 %license LICENSE.md
 %{_libdir}/*.so.%{sover}*
-%exclude %{_libdir}/libPy*
-
-%files -n python%{python3_pkgversion}-openexr
-# Is it OK to dump the libraries in site-packages?
-%{_libdir}/libPy*.so.%{sover}*
-%{python3_sitearch}/*.so
 
 %files devel
 %{_docdir}/OpenEXR/
 %{_includedir}/OpenEXR/
 %{_libdir}/*.so
-%{_libdir}/cmake/IlmBase/
-%{_libdir}/pkgconfig/IlmBase.pc
-%{_libdir}/cmake/PyIlmBase/
-%{_libdir}/pkgconfig/PyIlmBase.pc
 %{_libdir}/cmake/OpenEXR/
 %{_libdir}/pkgconfig/OpenEXR.pc
 
 
 %changelog
+* Tue Jul 20 2021 Richard Shaw <hobbes1069@gmail.com> - 3.0.5-1
+- Update to 3.0.5.
+
 * Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 2.5.5-2
 - Rebuilt for Python 3.10
 
