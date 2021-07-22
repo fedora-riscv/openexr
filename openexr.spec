@@ -3,7 +3,7 @@
 
 Name:           openexr
 Version:        3.0.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
 License:        BSD
@@ -126,6 +126,9 @@ Summary:        Development files for %{name}
 
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.5-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue Jul 20 2021 Richard Shaw <hobbes1069@gmail.com> - 3.0.5-1
 - Update to 3.0.5.
 
