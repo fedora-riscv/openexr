@@ -3,7 +3,7 @@
 
 Name:           openexr
 Version:        3.0.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
 License:        BSD
@@ -100,6 +100,12 @@ Summary:        Development files for %{name}
 %install
 %cmake_install
 
+# As of glibc 2.35 in f35, libpthread has been merged into glibc therefore
+# Threads::Threads is not needed and may cause issues.
+%if 0%{?fedora} > 34
+sed -i "s/;Threads::Threads//" %{buildroot}%{_libdir}/cmake/OpenEXR/OpenEXRTargets.cmake
+%endif
+
 
 %check
 # Test 4 currently fails on aarch64 and sometimes times out on armv7hl
@@ -126,6 +132,9 @@ Summary:        Development files for %{name}
 
 
 %changelog
+* Thu Aug 05 2021 Richard Shaw <hobbes1069@gmail.com> - 3.0.5-3
+- Remove Threads::Threads from link libraries in f35+
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
