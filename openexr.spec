@@ -110,7 +110,7 @@ sed -i "s/;Threads::Threads//" %{buildroot}%{_libdir}/cmake/OpenEXR/OpenEXRTarge
 %check
 # Test 4 currently fails on aarch64 and sometimes times out on armv7hl
 # https://github.com/AcademySoftwareFoundation/openexr/issues/876
-%ifnarch armv7hl aarch64 s390x
+%ifnarch armv7hl aarch64 s390x i686
 %ctest
 %endif
 
