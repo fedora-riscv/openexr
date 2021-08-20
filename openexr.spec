@@ -1,9 +1,9 @@
 %{?!python3_pkgversion:%global python3_pkgversion 3}
-%global sover 29
+%global sover 30
 
 Name:           openexr
-Version:        3.0.5
-Release:        3%{?dist}
+Version:        3.1.1
+Release:        1%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
 License:        BSD
@@ -132,6 +132,9 @@ sed -i "s/;Threads::Threads//" %{buildroot}%{_libdir}/cmake/OpenEXR/OpenEXRTarge
 
 
 %changelog
+* Wed Aug 11 2021 Richard Shaw <hobbes1069@gmail.com> - 3.1.1-1
+- Update to 3.1.1.
+
 * Thu Aug 05 2021 Richard Shaw <hobbes1069@gmail.com> - 3.0.5-3
 - Remove Threads::Threads from link libraries in f35+
 
