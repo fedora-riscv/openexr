@@ -2,7 +2,7 @@
 %global sover 30
 
 Name:           openexr
-Version:        3.1.1
+Version:        3.1.2
 Release:        1%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
@@ -100,17 +100,11 @@ Summary:        Development files for %{name}
 %install
 %cmake_install
 
-# As of glibc 2.35 in f35, libpthread has been merged into glibc therefore
-# Threads::Threads is not needed and may cause issues.
-%if 0%{?fedora} > 34
-sed -i "s/;Threads::Threads//" %{buildroot}%{_libdir}/cmake/OpenEXR/OpenEXRTargets.cmake
-%endif
-
 
 %check
-# Test 4 currently fails on aarch64 and sometimes times out on armv7hl
-# https://github.com/AcademySoftwareFoundation/openexr/issues/876
-%ifnarch armv7hl aarch64 s390x i686
+# A few tests fail on s390x
+# https://github.com/AcademySoftwareFoundation/openexr/issues/1175
+%ifnarch s390x
 %ctest
 %endif
 
@@ -132,6 +126,9 @@ sed -i "s/;Threads::Threads//" %{buildroot}%{_libdir}/cmake/OpenEXR/OpenEXRTarge
 
 
 %changelog
+* Wed Oct 06 2021 Richard Shaw <hobbes1069@gmail.com> - 3.1.2-1
+- Update to 3.1.2.
+
 * Wed Aug 11 2021 Richard Shaw <hobbes1069@gmail.com> - 3.1.1-1
 - Update to 3.1.1.
 
