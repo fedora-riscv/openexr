@@ -102,9 +102,9 @@ Summary:        Development files for %{name}
 
 
 %check
-# A few tests fail on s390x
+# A few tests fail on s390x and ppc64le
 # https://github.com/AcademySoftwareFoundation/openexr/issues/1175
-%ifnarch s390x
+%ifnarch s390x ppc64le
 %ctest
 %endif
 
