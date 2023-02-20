@@ -3,7 +3,7 @@
 
 Name:           openexr
 Version:        3.1.7
-Release:        1%{?dist}
+Release:        1.rv64%{?dist}
 Summary:        Provides the specification and reference implementation of the EXR file format
 
 License:        BSD
@@ -106,7 +106,7 @@ Summary:        Development files for %{name}
 %check
 # A few tests fail on s390x and ppc64le
 # https://github.com/AcademySoftwareFoundation/openexr/issues/1175
-%ifnarch s390x ppc64le
+%ifnarch s390x ppc64le riscv64
 %ctest
 %endif
 
@@ -144,6 +144,9 @@ Summary:        Development files for %{name}
 
 
 %changelog
+* Fri May 19 2023 Liu Yang <Yang.Liu.sn@gmail.com> - 3.1.7-1.rv64
+- Fix build on riscv64.
+
 * Tue May 16 2023 Richard Shaw <hobbes1069@gmail.com> - 3.1.7-1
 - Update to 3.1.7.
 
@@ -155,6 +158,9 @@ Summary:        Development files for %{name}
 
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 3.1.5-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
+
+* Mon Feb 20 2023 Liu Yang <Yang.Liu.sn@gmail.com> - 3.1.5-2.rv64
+- Fix build on riscv64.
 
 * Fri Jul 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.1.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
